@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weaver</title>
+    <link rel="shortcut icon" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navigation">
+        <a href="#" class="navigation-logo">
+        </a>
+        <div class="navigation-overlay">
+          <ul class="navigation-list">
+            <li class="navigation-item"><a href="/#/gallery" class="navigation-link">gallery</a></li>
+            <li class="navigation-item"><a href="/#/timeline" class="navigation-link">timeline</a></li>
+            <li class="navigation-item"><a href="/#/category" class="navigation-link">category</a></li>
+            <li class="navigation-item"><a href="/#/contact" class="navigation-link">contact</a></li>
+            <li class="navigation-item"><a href="/#/community" class="navigation-link">community</a></li>
+          </ul>
+        </div>  
+        <button class="navigation-button"></button>
+      </nav>
+      <a href="/login" class="login-button">Login</a>
+      <section class="gallery">
+        <ul class="gallery-list">
+          <li class="gallery-item is-active">
+            <div class="gallery-image" style="background-image: url(images/naturally-bizarre.jpg)"></div>
+            <div class="gallery-title">
+              <div class="gallery-text">
+                <span>Richard</span>
+                <span>Rodrigues</span>
+              </div>
+            </div>
+          </li>
+          <li class="gallery-item">
+            <div class="gallery-image" style="background-image: url(images/richard-rodrigues.jpg)"></div>
+            <div class="gallery-title">
+              <div class="gallery-text">
+                <span>Naturally</span>
+                <span>Bizarre</span>
+              </div>
+            </div>
+          </li>
+          <li class="gallery-item">
+            <div class="gallery-image" style="background-image: url(images/triangles.jpg)"></div>
+            <div class="gallery-title">
+              <div class="gallery-text">
+                <span>Triangles</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="gallery-pagination">
+          <button class="gallery-pagination-button is-active"></button>
+          <button class="gallery-pagination-button"></button>
+          <button class="gallery-pagination-button"></button>
+        </div>
+        <div class="gallery-navigation">
+          <button class="gallery-navigation-button gallery-navigation-button-previous"></button>
+          <button class="gallery-navigation-button gallery-navigation-button-next"></button>
+        </div>
+      </section>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="javascripts/jquery.transform2d.js"></script>
+    <script type="text/javascript" src="javascripts/script.js"></script>
+  </body>
+</html>
