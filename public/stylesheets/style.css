@@ -141,6 +141,24 @@ a {
 .login-button:hover {
 	opacity: 0.5;
 }
+.logout-button {
+	background: none;
+	border: none;
+	display: inline-block;
+	letter-spacing: 0.1rem;
+	line-height: 50px;
+	outline: 0;
+	font-size: 14px;
+	font-family:'Raleway', sans-serif;
+	transition: opacity .4s ease;
+	color: white;
+	position: fixed;
+	top: 50px;
+	right: 50px;
+	z-index: 3;
+	opacity: 1;
+}
+
 @media (max-width: 1023px) {
 	.navigation-list {
 		position: fixed;
