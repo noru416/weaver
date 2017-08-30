@@ -33,7 +33,7 @@ a {
 	color: inherit;
 	text-decoration: none;
 }
-.container {
+.app {
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -620,4 +620,22 @@ a {
 		font-size: 12px;
 		line-height: 24px;
 	}
+}
+.btn-default {
+	background: none;
+	border: none;
+	color: white;
+}
+.btn-default:hover {
+	background: none;
+	color: white;
+}
+.btn-default:active {
+	background: none;
+	color: inherit;
+}
+.btn-default:focus {
+	background: none;
+	outline: none;
+	color: inherit;
 }

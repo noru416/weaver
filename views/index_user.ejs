@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Raleway:700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
   </head>
   <body>
@@ -26,14 +27,28 @@
         </div>  
         <button class="navigation-button"></button>
       </nav>
-      <a href="/login" class="login-button">Login</a>
-      
+        <div class="login-button" style="z-index: 3; opacity: 1;">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+              noru416
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="javascripts/jquery.transform2d.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="javascripts/script.js"></script>
   </body>
 </html>

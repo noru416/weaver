@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -25,8 +26,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
-app.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Express' });
+app.post('/login', function(req, res) {
+  var user = {
+    username: 'th3425',
+    password: '111'
+  };
+  var uname = req.body.username;
+  var pwd = req.body.password;
+  if(uname === user.username && pwd === user.password) {
+    res.send('login success');
+  } else {
+    res.send('login fail');
+  }
 });
 
 // catch 404 and forward to error handler

@@ -18,7 +18,7 @@ function switchSection() {
 	var newSection = $('.navigation-link.is-active').text();
 	switch(newSection) {
 		case 'gallery': 
-			$('.container').append(`
+			$('.app').append(`
 				<section class="gallery">
 					<ul class="gallery-list">
 					  <li class="gallery-item is-active">
@@ -66,7 +66,7 @@ function switchSection() {
 			break;
 
 		case 'timeline': 
-			$('.container').append(`
+			$('.app').append(`
 				<section class="services">
 					<div class="services-wrapper">
 						<div class="services-column">
@@ -114,7 +114,7 @@ function switchSection() {
 			break;
 		
 		case 'category':
-			$('.container').append(`
+			$('.app').append(`
 				<section class="services">
 					<div class="services-wrapper">
 						<div class="services-column">
@@ -162,7 +162,7 @@ function switchSection() {
 			break;
 
 		case 'contact':
-			$('.container').append(`
+			$('.app').append(`
 				<section class="contact">
 					<div class="contact-wrapper">
 						<div class="contact-box">
