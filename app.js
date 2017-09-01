@@ -50,7 +50,7 @@ app.post('/login', function(req, res) {
   for(var i=0; i<users.length; i++) {
     var user = users[i];
     if(uname === user.username && pwd === user.password) {
-      req.session.displayName = user.displayName;
+      res.cookie('displayName', user.displayName);
       res.redirect('/');
     } else {
       res.send(users)

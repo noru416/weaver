@@ -297,7 +297,6 @@ function animategalleryItem() {
 		newItem.removeAttr('style');
 		animating = false;
 	});
-	
 }
 
 $(document).on('click', '.gallery-navigation-button', function () {
@@ -307,6 +306,10 @@ $(document).on('click', '.gallery-navigation-button', function () {
 	} else {
 		animategalleryItem();
 	}
+});
+
+$(document).on('click', '.logout', function() {
+	$.cookie('displayName', '');
 });
 
 function switchWithURL() {
@@ -347,13 +350,14 @@ $(document).ready(function() {
 });
 
 function authenticate() {
-	if(false) {
+	var displayName = $.cookie('displayName');
+	if($.cookie('displayName')) {
 		$('.login-button').remove();
 		$('.navigation').after(`
 			<div class="logout-button">
 		        <div class="dropdown">
 		          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-		            noru416
+		            ${displayName}
 		            <span class="caret"></span>
 		          </button>
 		          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -361,7 +365,7 @@ function authenticate() {
 		            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
 		            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
 		            <li class="divider"></li>
-		            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sign out</a></li>
+		            <li role="presentation"><a role="menuitem" tabindex="-1" href="/" class='logout'>Sign out</a></li>
 		          </ul>
 		        </div>
 		      </div>

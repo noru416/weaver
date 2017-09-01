@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	setting();
-	authenticate();
 });
 $(document).on('click', '.tabs > a', function() {
 	if($(this).hasClass('active')){
