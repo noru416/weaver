@@ -4,11 +4,18 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var $ = require("jquery");
-var session = require('express-session')
-var MySQLStore = require('express-mysql-session')(session);
-var passport = require('passport')
-var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
+var mysql = require('mysql');
+var query = require('queryselector');
+
+// var connection = mysql.createConnection({
+//   host     : 'localhost',
+//   user     : 'me',
+//   password : '1234',
+//   database : 'o2'
+// });
+// connection.connect();
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -16,23 +23,11 @@ var users = require('./routes/users');
 var app = express();
 
 app.use(session({
-  secret: 'keyboard cat',
+  secret: '1234DSFs@adf1234!@#$asd',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true },
-  // store: sessionStore
+  store:new FileStore()
 }));
-
-app.use(passport.initialize());
-app.use(passport.session());
-var options = {
-    host: 'localhost',
-    port: 3306,
-    user: 'session_test',
-    password: 'password',
-    database: 'session_test'
-};
-var sessionStore = new MySQLStore(options);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,36 +44,41 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    var uname = username;
-    var pwd = password;
-    for(var i=0; i<users.length; i++) {
-      var user = users[i];
-      if(uname === user.username) {
-        return hasher({password:pwd, salt: user.salt},
-        function(err, pass, salt, hash) {
-          if (hash === user.password) {
-            done(null, user);    
-          } else {
-            done(null, false);
-          }
-        });
-      } 
-    }
-    done(null, false);
-  }
-));
 app.post('/login', function(req, res) {
-  passport.authenticate('local', { 
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true 
-  });
+  var uname = req.body.username;
+  var pwd = req.body.password;
+  for(var i=0; i<users.length; i++) {
+    var user = users[i];
+    if(uname === user.username && pwd === user.password) {
+      req.session.displayName = user.displayName;
+      res.redirect('/');
+    } else {
+      res.send(users)
+    }
+  }
 });
-
-app.post('/createAccount', function(req, res) {
-  
+var users = [
+  {
+    username: 'admin',
+    password: '1234',
+    displayName: 'admin'
+  }
+];
+app.post('/createAccount', function(req, res){
+  var user = {
+    username: req.body.username,
+    password: req.body.password,
+    displayName: req.body.displayName
+  };
+  var sql = 'INSERT INTO users SET ?';
+  conn.query(sql, user, function(err, results){
+    if (err) {
+      console.log(err);
+      res.status(500);
+    } else {
+      res.redirect('/');
+    }
+  });
 });
 
 // catch 404 and forward to error handler

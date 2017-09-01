@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	setting();
+	authenticate();
 });
 $(document).on('click', '.tabs > a', function() {
 	if($(this).hasClass('active')){
@@ -15,34 +16,26 @@ function setting() {
 		// Get
 		var username = $('input[name=username]');
 		var password = $('input[name=password]');
-		var password2 = $('input[name=password2]');
-		var firstname = $('input[name=firstname]');
-		var lastname = $('input[name=lastname]');
-		var email = $('input[name=email]');
-		
+		var displayName = $('input[name=displayName]');
 		// Set
 		$('input[name=username]').attr('value', username.val());
 		$('input[name=password]').attr('value', password.val());
-		$('input[name=password2]').attr('value', password2.val());
-		$('input[name=firstname]').attr('value', firstname.val());
-		$('input[name=lastname]').attr('value', lastname.val());
-		$('input[name=email]').attr('value', email.val());
+		$('input[name=displayName]').attr('value', displayName.val());
 		// Get length
 		var length1 = getTextLength(username.attr('value'));
-		var length2 = getTextLength(password.attr('value'));
-		var length3 = getTextLength(password2.attr('value'));
-		var length4 = getTextLength(firstname.attr('value'));
-		var length5 = getTextLength(lastname.attr('value'));
-		var length6 = getTextLength(email.attr('value'));
+		var length2 = getTextLength(password.attr('value'));;
+		var length3 = getTextLength(displayName.attr('value'));
 
-		if (length1 > 0 && length2 > 0) {
-			$('.inactive').removeAttr('disabled');
-			$('.inactive').removeClass('inactive');	
-		} 
-
-		if (length2 > 0 && length3 > 0 && length4 > 0 && length5 > 0 && length6 > 0) {
-			$('.inactive').removeAttr('disabled');
-			$('.inactive').removeClass('inactive');
+		if($('a.active').text() == 'Sign In') {
+			if (length1 > 0 && length2 > 0) {
+				$('.inactive').removeAttr('disabled');
+				$('.inactive').removeClass('inactive');
+			}
+		} else {
+			if (length1 > 0 && length2 > 0 && length3 > 0) {
+				$('.inactive').removeAttr('disabled');
+				$('.inactive').removeClass('inactive');
+			}
 		}
 	});
 }

@@ -343,31 +343,28 @@ $(window).on('hashchange', function(e){
 $(document).ready(function() {
 	switchWithURL();
 	renderSection();
+	authenticate();
 });
 
-// function changeStatus() {
-// 	var status = 쿠키확인함수; // boolean
-// 	if(status) {
-// 		$('.login-button').remove();
-// 		$('.navigation').after(`
-//      		<div class="logout-button">
-// 	          <div class="dropdown">
-// 	            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-// 	              noru416
-// 	              <span class="caret"></span>
-// 	            </button>
-// 	            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-// 	              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-// 	              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-// 	              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-// 	              <li class="divider"></li>
-// 	              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sign out</a></li>
-// 	            </ul>
-// 	          </div>
-// 	        </div>
-//      	`);
-// 	} else {
-// 		$('.logout-button').remove();
-// 		$('.navigation').after(`<a href="/login" class="login-button">Login</a>`);
-// 	}
-// }
+function authenticate() {
+	if(false) {
+		$('.login-button').remove();
+		$('.navigation').after(`
+			<div class="logout-button">
+		        <div class="dropdown">
+		          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+		            noru416
+		            <span class="caret"></span>
+		          </button>
+		          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+		            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+		            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+		            <li class="divider"></li>
+		            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sign out</a></li>
+		          </ul>
+		        </div>
+		      </div>
+		`);
+	}
+}
