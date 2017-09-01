@@ -11,6 +11,9 @@ router.get('/gallery', function(req, res, next) {
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Express' });
 });
+router.get('/createAccount', function(req, res, next) {
+  res.render('createAccount', { title: 'Express' });
+});
 router.get('/success', function(req, res, next) {
   res.render('index_user', { title: 'Express' });
 });
