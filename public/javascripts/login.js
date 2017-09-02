@@ -10,6 +10,13 @@ $(document).on('click', '.tabs > a', function() {
     	renderForm();
     }
 });
+$(document).on('click', '.enable', function() {
+	if(typeof $.cookie('displayName') === 'undefined') {
+		$('.login-fail').css({
+			'visibility': 'visible'
+		});
+	}
+});
 function setting() {
 	$(document).keyup(function() {
 		// Get
@@ -28,6 +35,7 @@ function setting() {
 		if($('a.active').text() == 'Sign In') {
 			if (length1 > 0 && length2 > 0) {
 				$('.inactive').removeAttr('disabled');
+				$('.inactive').addClass('enable');
 				$('.inactive').removeClass('inactive');
 			}
 		} else {

@@ -6,13 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
+var sha256 = require('sha256');
 var mysql = require('mysql');
 
 var conn = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '1234',
-  database : 'o2'
+  database : 'weaver'
 });
 conn.connect();
 
@@ -20,13 +21,6 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-
-app.use(session({
-  secret: '1234DSFs@adf1234!@#$asd',
-  resave: false,
-  saveUninitialized: true,
-  store:new FileStore()
-}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,17 +42,17 @@ app.post('/login', function(req, res) {
   var pwd = req.body.password;
   var sql = 'SELECT * FROM users WHERE username=?';
   conn.query(sql, [uname], function(err, results) {
-    console.log(results);
     if (err) {
       console.log('There is no user');
-    }
-    for(var i=0; i<results.length; i++) {
-      var user = results[i];
-      if(uname === user.username && pwd === user.password) {
-        res.cookie('displayName', user.displayName);
-        res.redirect('/');
-      } else {
-        res.send(users)
+    } else {
+      for(var i=0; i<results.length; i++) {
+        var user = results[i];
+        if(uname === user.username && sha256(pwd) === user.password) {
+          res.cookie('displayName', user.displayName);
+          res.redirect('/');
+        } else {
+          res.redirect('/login');
+        }
       }
     }
   });
@@ -67,7 +61,7 @@ app.post('/login', function(req, res) {
 app.post('/createAccount', function(req, res){
   var user = {
     username: req.body.username,
-    password: req.body.password,
+    password: sha256(req.body.password),
     displayName: req.body.displayName
   };
   var sql = 'INSERT INTO users SET ?';
@@ -87,7 +81,7 @@ app.post('/write', function(req,res) {
     username: req.cookies.displayName,
     title: req.body.title,
     content: req.body.content,
-    date: date
+    created: date
   };
   var sql = 'INSERT INTO board SET ?';
   conn.query(sql, article, function(err, results){
@@ -120,7 +114,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+  console.log('app listening on port 3000!');
 });
 
 module.exports = app;

@@ -119,6 +119,9 @@ button.inactive, button:disabled {
 }
 .special-page .contact {
 	color: #797979;
-	margin-top: 50px;
 	display: block;
+}
+.login-fail {
+	color: red;
+	visibility: hidden;
 }

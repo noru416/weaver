@@ -7,23 +7,23 @@ var conn = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '1234',
-  database : 'o2'
+  database : 'weaver'
 });
 conn.connect();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index');
 });
 router.get('/gallery', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index');
 });
 router.get('/community', function(req, res, next) {
     conn.query('SELECT * FROM board', function(err, result) {
 	    if(err){
 	        throw err;
 	    } else {
-	        res.render('community', { rows: result});                
+	        res.render('community', { rows: result });                
 	    }
 	});
 });
@@ -31,13 +31,13 @@ router.get('/write', function(req, res, next) {
   if (req.cookies.displayName === '') {
     res.redirect('/login');
   }
-  res.render('write', { title: 'Express' });
+  res.render('write');
 });
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Express' });
+  res.render('login');
 });
 router.get('/createAccount', function(req, res, next) {
-  res.render('createAccount', { title: 'Express' });
+  res.render('createAccount');
 });
 
 module.exports = router;
