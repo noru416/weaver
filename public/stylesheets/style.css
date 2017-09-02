@@ -224,6 +224,12 @@ a {
 	.navigation.is-active .login {
 		visibility: hidden;
 	}
+	.login-button {
+		right: 110px;
+	}
+	.logout-button {
+		right: 110px;
+	}
 }
 @media (max-width: 767px) {
 	.navigation-logo {
@@ -238,6 +244,10 @@ a {
 		padding-left: 25px;
 		font-size: 30px;
 		line-height: 70px;
+	}
+	.login-button {
+		right: 80px;
+		top: 25px;
 	}
 }
 .gallery {

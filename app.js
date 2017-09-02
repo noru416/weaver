@@ -7,15 +7,14 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 var mysql = require('mysql');
-var query = require('queryselector');
 
-// var connection = mysql.createConnection({
-//   host     : 'localhost',
-//   user     : 'me',
-//   password : '1234',
-//   database : 'o2'
-// });
-// connection.connect();
+var conn = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '1234',
+  database : 'o2'
+});
+conn.connect();
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -47,23 +46,24 @@ app.use('/users', users);
 app.post('/login', function(req, res) {
   var uname = req.body.username;
   var pwd = req.body.password;
-  for(var i=0; i<users.length; i++) {
-    var user = users[i];
-    if(uname === user.username && pwd === user.password) {
-      res.cookie('displayName', user.displayName);
-      res.redirect('/');
-    } else {
-      res.send(users)
+  var sql = 'SELECT * FROM users WHERE username=?';
+  conn.query(sql, [uname], function(err, results) {
+    console.log(results);
+    if (err) {
+      console.log('There is no user');
     }
-  }
+    for(var i=0; i<results.length; i++) {
+      var user = results[i];
+      if(uname === user.username && pwd === user.password) {
+        res.cookie('displayName', user.displayName);
+        res.redirect('/');
+      } else {
+        res.send(users)
+      }
+    }
+  });
 });
-var users = [
-  {
-    username: 'admin',
-    password: '1234',
-    displayName: 'admin'
-  }
-];
+
 app.post('/createAccount', function(req, res){
   var user = {
     username: req.body.username,
@@ -76,7 +76,27 @@ app.post('/createAccount', function(req, res){
       console.log(err);
       res.status(500);
     } else {
-      res.redirect('/');
+      res.redirect('/login');
+    }
+  });
+});
+
+app.post('/write', function(req,res) {
+  var date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+  var article = {
+    username: req.cookies.displayName,
+    title: req.body.title,
+    content: req.body.content,
+    date: date
+  };
+  var sql = 'INSERT INTO board SET ?';
+  conn.query(sql, article, function(err, results){
+    console.log(results);
+    if (err) {
+      console.log(err);
+      res.status(500);
+    } else {
+      res.redirect('/community');
     }
   });
 });
